@@ -10,31 +10,36 @@
 <body>
 <input id="text" type="text" value="" style="width:80%" /><br />
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-<p id="notext"></p>
 
 <script type="text/javascript">
+//obtain MAC from device
 var mac = "08-ED-B9-49-B2-E5";
-var rnd = "1024"; //0..1024 with lead 0 if necessary;
+//obtain rnd value, which generates one time within fist launch of application
+var rnd = "4"; //0..1024 with lead 0 if necessary;
+while (rnd.length < 4) {
+	rnd = "0"+rnd;
+} 
+var fingerprint = mac+"-"+rnd;
 
 setInterval(redrawTimer, 1000);
 function redrawTimer(){
-	myStringToEncode = mac + "-"+rnd + "-"+getDate() + "-"+getTime(0);
+	myStringToEncode = fingerprint + "-"+getDate() + " "+getTime(0);
 	document.getElementById("text").value = myStringToEncode;
 	makeCode();
 }
 function getDate() {
 	var cdate = new Date();
-	var yy  = cdate.getFullYear();
-	var mo  = cdate.getMonth()*1+1;
-	var dd  = cdate.getDate();
+	var yy  = cdate.getUTCFullYear();
+	var mo  = cdate.getUTCMonth()*1+1;
+	var dd  = cdate.getUTCDate();
 	nd = yy+"-"+mo+"-"+dd;
 	return nd;
 }
 function getTime(type) {
 	var d = new Date();
-	var hh = d.getHours();
-	var mm = d.getMinutes();
-	var ss = d.getSeconds();
+	var hh = d.getUTCHours();
+	var mm = d.getUTCMinutes();
+	var ss = d.getUTCSeconds();
 	if (hh < 10) {
 	   	hh = "0"+hh;
 	}
