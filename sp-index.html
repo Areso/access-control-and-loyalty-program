@@ -14,10 +14,26 @@
 myStringToEncode = "08-ED-B9-49-B2-E5-1024-2016/12/27 15:43";
 clFingerprint = myStringToEncode.slice(0,22);
 clDateTime    = myStringToEncode.slice(23,42)+":00";
-spDateTime    = getDate() + " "+getTime(0)+":00";
+clTime        = new Date(clDateTime.slice(11,19));
+alert(clDateTime.slice(11,19));
+//alert(clTime);
+spDateTime    = getDate() + " "+getmyTime(0)+":00";
+//spTime        = new Date("""+getmyTime(0)+":00"+""");
+alert(spTime);
+var date1 = new Date("7/13/2010 15:43:01");
+var date3 = new Date("2010/07/13");
+var date4 = new Date("2010/07/14");
+var date2 = new Date("15:43:01");
+lol1 = spTime.getTime();
+lol2 = date2.getTime();
+var stringTime = "15:43:01";
+lol3 = new Date(stringTime);
+alert(lol3);
+//diff = new Date("");
+//diff.setDate(spTime.getDate()-date3.getDate());
+//diff.setTime(spTime.getTime()-clTime.getTime());
 
-diff = spDateTime.now-clDateTime.now;
-alert(diff);
+//alert(diff);
 
 function getDate() {
 	var cdate = new Date();
@@ -27,7 +43,7 @@ function getDate() {
 	nd = yy+"/"+mo+"/"+dd;
 	return nd;
 }
-function getTime(type) {
+function getmyTime(type) {
 	var d = new Date();
 	var hh = d.getUTCHours();
 	var mm = d.getUTCMinutes();
