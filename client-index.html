@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Cross-Browser QRCode generator for Javascript</title>
+<title>Client</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <script type="text/javascript" src="jquery.min.js"></script>
@@ -30,8 +30,17 @@ function redrawTimer(){
 function getDate() {
 	var cdate = new Date();
 	var yy  = cdate.getUTCFullYear();
+		if (yy < 10) {
+			yy = "0"+yy;
+		} 
 	var mo  = cdate.getUTCMonth()*1+1;
+		if (mo < 10) {
+			mo = "0"+mo;
+		} 
 	var dd  = cdate.getUTCDate();
+		if (dd < 10) {
+			dd = "0"+dd;
+		} 
 	nd = yy+"-"+mo+"-"+dd;
 	return nd;
 }
@@ -41,19 +50,19 @@ function getTime(type) {
 	var mm = d.getUTCMinutes();
 	var ss = d.getUTCSeconds();
 	if (hh < 10) {
-	   	hh = "0"+hh;
+		hh = "0"+hh;
 	}
 	if (mm < 10) {
-	  	mm = "0"+mm;
+		mm = "0"+mm;
 	}
 	if (ss < 10) {
-	   	ss = "0"+ss;
+		ss = "0"+ss;
 	}
 	if (type=="0") {
-	   	nt = hh+":"+mm;	
+		nt = hh+":"+mm;	
 	}
 	if (type=="1") {
-	   	nt = hh+":"+mm+":"+ss;	
+		nt = hh+":"+mm+":"+ss;	
 	}
 	return nt;
 }
