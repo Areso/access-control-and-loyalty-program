@@ -7,6 +7,55 @@
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="qrcode.js"></script>
 	<script type="text/javascript" src="meteor.js"></script>
+<style>
+
+
+	/* Style the tab */
+	div.tab {
+	    overflow: hidden;
+	    border: 1px solid #ccc;
+	    background-color: #f1f1f1;
+	}
+
+	/* Style the links inside the tab */
+	div.tab a {
+	    float: left;
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    transition: 0.3s;
+	    font-size: 17px;
+	}
+
+	/* Change background color of links on hover */
+	div.tab a:hover {
+	    background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	div.tab a:focus, .active {
+	    background-color: #ccc;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+	    display: none;
+	    padding: 6px 12px;
+	    border: 1px solid #ccc;
+	    border-top: none;
+	}
+
+	/* Style the close button */
+	.topright {
+	    float: right;
+	    cursor: pointer;
+	    font-size: 20px;
+	}
+
+	.topright:hover {color: red;}
+</style>
 </head>
 <body> 
 
@@ -14,7 +63,30 @@
 <button onclick="dataInsert('08-ED-B9-49-B2-E5-1024-2016/12/27 14:43')">Case2</button> 
 <br>
 <input id="text" type="text" value="" style="width:80%" /><br />
+<br>
+<div class="tab">
+  <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'London')" id="defaultOpen">London</a>
+  <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Paris')">Paris</a>
+  <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tokyo')">Tokyo</a>
+</div>
 
+<div id="London" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
 <script type="text/javascript">
 function dataInsert(inputstring) {
 	//myStringToEncode = "08-ED-B9-49-B2-E5-1024-2016/12/27 15:43";
@@ -96,6 +168,22 @@ function getmyTime(type) {
 	}
 	return nt;
 }
+function openTab(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>
