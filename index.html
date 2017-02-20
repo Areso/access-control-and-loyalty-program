@@ -70,16 +70,22 @@
   <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Tokyo')">Tokyo</a>
 </div>
 
-<div id="London" class="tabcontent">
+<div id="Read" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
   <h3>London</h3>
   <p>London is the capital city of England.</p>
 </div>
 
-<div id="Paris" class="tabcontent">
+<div id="Create" class="tabcontent">
   <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
   <h3>Paris</h3>
   <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Update" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">x</span>
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
 </div>
 
 <div id="Tokyo" class="tabcontent">
@@ -87,6 +93,7 @@
   <h3>Tokyo</h3>
   <p>Tokyo is the capital of Japan.</p>
 </div>
+
 <script type="text/javascript">
 function dataInsert(inputstring) {
 	//myStringToEncode = "08-ED-B9-49-B2-E5-1024-2016/12/27 15:43";
@@ -123,9 +130,9 @@ function myFunction(){
 	var responseDate = moment(clDate).format('DD.MM.YYYY');
 	diff = Math.abs(compareTime(spTime, clTime));
 	alert(diff);
-	if (diff < 200) {
-		//check database
-		//if found then
+	acceptDiff       = 200; //only for debugging! 5;
+	if (diff < acceptDiff) {
+		checkDB();
 		
 	} else {
 		alert('client time settings is incorrect, otherthise client faked')
